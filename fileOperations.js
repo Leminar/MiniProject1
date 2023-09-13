@@ -1,13 +1,18 @@
+// Step 1: Import required Node.js modules
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Step 2: Define constants and file path
 const PORT = 3000;
 const filePath = path.join(__dirname, 'example.txt');
 
+// Step 3: Create an HTTP server
 const server = http.createServer((req, res) => {
+
   if (req.method === 'GET' && req.url === '/') {
-    // Serve an HTML page with a textarea and buttons
+
+// Step 4: Serve an HTML page with a textarea and buttons
     res.writeHead(200, { 'Content-Type': 'text/html' });
     const html = `
       <!DOCTYPE html>
@@ -18,6 +23,7 @@ const server = http.createServer((req, res) => {
           <button onclick="clearText()">Clear Text</button>
           <p id="displayText"></p>
           <script>
+
             function displayText() {
               const inputText = document.getElementById('inputText').value;
               const displayArea = document.getElementById('displayText');
@@ -36,7 +42,7 @@ const server = http.createServer((req, res) => {
               fetch('/clearFile');
             }
 
-            // Update the textarea with the content of example.txt on page load
+            
             fetch('/readFile')
               .then((response) => response.text())
               .then((data) => {
@@ -47,8 +53,10 @@ const server = http.createServer((req, res) => {
       </html>
     `;
     res.end(html);
-  } else if (req.method === 'POST' && req.url === '/updateFile') {
-    // Handle POST request to update the example.txt file
+  }
+
+// Step 5: Read the incoming data (text) and write it to the "example.txt" file
+  else if (req.method === 'POST' && req.url === '/updateFile') {
     let data = '';
     req.on('data', (chunk) => {
       data += chunk;
@@ -64,8 +72,10 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end('File updated successfully.');
     });
-  } else if (req.method === 'GET' && req.url === '/readFile') {
-    // Handle GET request to read the example.txt file
+  }
+
+  // Step 6:Read the content of the "example.txt" file and respond with it
+  else if (req.method === 'GET' && req.url === '/readFile') {
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         console.error('Error reading file:', err);
@@ -76,8 +86,10 @@ const server = http.createServer((req, res) => {
         res.end(data);
       }
     });
-  } else if (req.method === 'GET' && req.url === '/clearFile') {
-    // Handle GET request to clear the example.txt file
+  }
+
+  // Step 7: Clear the content of the "example.txt" file and respond with success
+  else if (req.method === 'GET' && req.url === '/clearFile') {
     fs.writeFile(filePath, '', (err) => {
       if (err) {
         console.error('Error clearing file:', err);
@@ -89,13 +101,11 @@ const server = http.createServer((req, res) => {
         res.end('File cleared successfully.');
       }
     });
-  } else {
-    // Handle other HTTP methods or paths if needed
-    res.writeHead(405, { 'Content-Type': 'text/plain' });
-    res.end('Method not allowed');
   }
 });
 
+// Step 8: Start the HTTP server and listen on  port 3000
 server.listen(PORT, () => {
   console.log(`Server running on <http://localhost>:${PORT}`);
 });
+
