@@ -1,37 +1,55 @@
-const http = require('http');
-const fs = require('fs').promises;
+const express = require('express');
 const path = require('path');
-const ejs = require('ejs');
+const fs = require('fs').promises;
 
-const requestHandler = async (req, res) => {
+const app = express();
+const port = 3000;
+
+
+//1. Set the views directory and the view engine to EJS
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+//2. Path to the users.json file
+const usersFilePath = path.join(__dirname, 'users.json');
+
+//3. Read users data from the users.json file on server startup
+async function readUsersData() {
   try {
-    if (req.method === 'GET' && req.url === '/api/users') {
-      //1. Read user data from a file using Promises and async/await
-      const filePath = path.join(__dirname, 'users.json');
-      const data = await fs.readFile(filePath, 'utf8');
-      const userData = JSON.parse(data);
-
-      //2. Render the EJS template with user data
-      const template = await fs.readFile(path.join(__dirname, 'users.ejs'), 'utf8');
-      const renderedHtml = ejs.render(template, { userData });
-
-      //3. Send the rendered HTML as the response
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(renderedHtml);
-    } else {
-      //4. Handle 404 error not found
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Not Found');
-    }
+    const data = await fs.readFile(usersFilePath, 'utf8');
+    users = JSON.parse(data);
   } catch (error) {
-    //5. Handle 500 Internal Server Error
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end('Internal Server Error');
+    console.error('Error reading users data:', error);
   }
-};
+}
 
-const server = http.createServer(requestHandler);
+//4. Call the function to read users data
+readUsersData();
 
-server.listen(3000, () => {
-  console.log('Server running on <http://localhost:3000/api/users>');
+app.get('/api/users', async (req, res) => {
+  try {
+    //5. Simulate fetching user data from a database or other asynchronous operation
+    const userData = await fetchDataFromDatabase();
+
+    //6. Render the users.ejs template with the fetched user data
+    res.render('users', { users: userData });
+  } catch (error) {
+    console.error('Error in /api/users:', error);
+    res.status(500).send(`${error}`);
+  }
+});
+
+//7. Function to simulate fetching data from a database
+async function fetchDataFromDatabase() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(users);
+    }, 2000);
+  });
+}
+
+
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}/api/users`);
 });

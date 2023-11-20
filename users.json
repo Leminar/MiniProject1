@@ -1,37 +1,37 @@
 [
     { 
         "id": 1, 
-        "name": "John", 
-        "age": 22
+        "name": "John"
+        
     },
     
     { 
         "id": 2, 
-        "name": "Jane",
-        "age": 19
+        "name": "Jane"
+        
     },
 
     { 
         "id": 3, 
-        "name": "Harry",
-        "age": 27
+        "name": "Harry"
+       
     },
     
     { 
         "id": 4, 
-        "name": "Kane",
-        "age": 31
+        "name": "Kane"
+        
     },
     
     { 
         "id": 5, 
-        "name": "Messi",
-        "age": 36
+        "name": "Messi"
+        
     },
     
     { 
         "id": 6, 
-        "name": "Ronaldo",
-        "age": 38
+        "name": "Ronaldo"
+        
     }
 ]
