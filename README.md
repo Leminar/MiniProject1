@@ -1,33 +1,26 @@
 # miniporject 4
 
-This repository contains a simple Node.js server that utilizes the http module to handle requests and serves an HTML page rendered from an EJS template. The server is set up to respond to a specific GET request (/api/users) by reading user data from a JSON file, rendering it using EJS, and sending the HTML response.
+The code sets up an Express.js server for a user management web app, reading user data from a 'users.json' file on startup. It defines an API endpoint '/api/users' to simulate asynchronous data fetching and renders the user data using an EJS template. The server listens on port 3000, providing a basic structure for a user management application with asynchronous data handling.
 
-# Code Explanation
-1. Reading User Data
+# Event Loop
+1. Initialization: Node.js initializes an event loop, a continuous process that manages asynchronous tasks in a single-threaded environment.
 
-The server reads user data from a JSON file (users.json) using fs.promises and async/await.
+2. Execution Stack: The main program execution starts with functions pushed onto the execution stack, and asynchronous tasks use callbacks to signal completion.
 
-2. Rendering EJS Template
+3. Callback Queue: Completed asynchronous callbacks are placed in a queue, waiting to be processed during the event loop's pending callbacks phase.
 
-The EJS template (users.ejs) is read using fs.promises and then rendered with the user data using ejs.render.
+4. Phases: The event loop consists of phases like timers, poll, and check, each handling specific types of tasks in a well-defined order.
 
-3. Sending HTML Response
-
-The rendered HTML is sent as the response with a status code of 200.
-
-4. Handling 404 Error
-
-If the requested URL does not match /api/users, a 404 error is sent as the response.
-
-5. Handling 500 Error
-
-Any unhandled errors during the process result in a 500 Internal Server Error response.
+5. Non-Blocking Efficiency: Node.js' non-blocking I/O operations allow it to handle numerous concurrent connections efficiently, making it suitable for scalable and real-time applications.
 
 ## Usage
 
-1. Clone this repository to your local machine.
+a. Clone this repository to your local machine.
 
-2. Install the required dependencies by running:
+b. Navigate to the project directory:
 
-Access the user API endpoint by visiting http://localhost:3000/api/users.
+c. Install the required dependencies by running:
+
+Start the server: Access the user API endpoint by visiting
+ http://localhost:3000/api/users.
   
