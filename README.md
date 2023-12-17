@@ -1,26 +1,27 @@
-# miniporject 4
+# React Mini Project
 
-The code sets up an Express.js server for a user management web app, reading user data from a 'users.json' file on startup. It defines an API endpoint '/api/users' to simulate asynchronous data fetching and renders the user data using an EJS template. The server listens on port 3000, providing a basic structure for a user management application with asynchronous data handling.
+This project demonstrates various React concepts and features. Below are the added functionalities:
 
-# Event Loop
-1. Initialization: Node.js initializes an event loop, a continuous process that manages asynchronous tasks in a single-threaded environment.
+## JSX Example
+Check out the JSX syntax example in [JSXExample.js](client/src/JSXExample.js).
 
-2. Execution Stack: The main program execution starts with functions pushed onto the execution stack, and asynchronous tasks use callbacks to signal completion.
+## Functional and Class Components
+Explore functional and class components in [FunctionalComponent.js](client/src/FunctionalComponent.js) and [ClassComponent.js](client/src/ClassComponent.js).
 
-3. Callback Queue: Completed asynchronous callbacks are placed in a queue, waiting to be processed during the event loop's pending callbacks phase.
+## Props and State
+Learn about props and state in [PropsAndState.js](client/src/PropsAndState.js).
 
-4. Phases: The event loop consists of phases like timers, poll, and check, each handling specific types of tasks in a well-defined order.
+## Event Handling
+Event handling for adding, editing, and deleting exercises has been implemented in [App.js](client/src/App.js).
 
-5. Non-Blocking Efficiency: Node.js' non-blocking I/O operations allow it to handle numerous concurrent connections efficiently, making it suitable for scalable and real-time applications.
+## Conditional Rendering
+Conditional rendering has been added to show/hide elements based on a condition in [App.js](client/src/App.js).
 
-## Usage
+## Lists and Keys
+Exercises are rendered with proper keys in the list in [App.js](client/src/App.js).
 
-a. Clone this repository to your local machine.
-
-b. Navigate to the project directory:
-
-c. Install the required dependencies by running:
-
-Start the server: Access the user API endpoint by visiting
- http://localhost:3000/api/users.
-  
+## How to Run
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies: `npm install`.
+4. Run the React app: `npm start`.
