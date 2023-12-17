@@ -1,6 +1,7 @@
 import React from 'react';
 import UserContainer from './ClassComponent';
 
+// The main application component that renders the UserContainer component
 const App = () => {
   return (
     <div>
@@ -11,3 +12,5 @@ const App = () => {
 };
 
 export default App;
+
+
