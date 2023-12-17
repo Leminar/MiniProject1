@@ -1,27 +1,57 @@
-# React Mini Project
 
-This project demonstrates various React concepts and features. Below are the added functionalities:
+- `client`: Contains the React front-end code.
+- `server`: Contains the Node.js back-end code.
 
-## JSX Example
-Check out the JSX syntax example in [JSXExample.js](client/src/JSXExample.js).
+## Running the Project
 
-## Functional and Class Components
-Explore functional and class components in [FunctionalComponent.js](client/src/FunctionalComponent.js) and [ClassComponent.js](client/src/ClassComponent.js).
+To run the project, follow these steps:
 
-## Props and State
-Learn about props and state in [PropsAndState.js](client/src/PropsAndState.js).
+1. **Start the Node.js Backend Server**:
+   - Navigate to the `server` directory:
+     ```bash
+     cd /path/to/your/project-root/server
+     ```
+   - Start the Node.js server:
+     ```bash
+     node server.js
+     ```
 
-## Event Handling
-Event handling for adding, editing, and deleting exercises has been implemented in [App.js](client/src/App.js).
+2. **Start the React Front-end**:
+   - Navigate to the `client` directory:
+     ```bash
+     cd /path/to/your/project-root/client
+     ```
+   - Start the React development server:
+     ```bash
+     npm start
+     ```
 
-## Conditional Rendering
-Conditional rendering has been added to show/hide elements based on a condition in [App.js](client/src/App.js).
+3. Access your React app in a web browser at [http://localhost:3000](http://localhost:3000).
 
-## Lists and Keys
-Exercises are rendered with proper keys in the list in [App.js](client/src/App.js).
+## Components
 
-## How to Run
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Run the React app: `npm start`.
+### App.js (Functional Component)
+
+This is the entry point of the React app. It renders the `UserContainer` component.
+
+### UserList.js (Functional Component)
+
+This component displays a list of users received as props.
+
+### UserContainer.js (Class Component)
+
+This component manages state and handles API interactions. It fetches user data from the Node.js server and passes it to `UserList`.
+
+## Additional Notes
+
+- Ensure CORS is enabled on your Node.js backend to allow communication with your React app.
+- Modify components to fit your specific requirements and data structure.
+- Add error handling and loading states for a better user experience.
+
+## Author
+
+[Your Name]
+
+## License
+
+This project is licensed under the [License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
