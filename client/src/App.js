@@ -5,7 +5,6 @@ function App() {
   const [newUser, setNewUser] = useState({ username: '' });
 
   useEffect(() => {
-    // Fetch users data from the API using fetch
     fetch('http://localhost:3000/api/users')
       .then((response) => {
         if (!response.ok) {
@@ -21,7 +20,6 @@ function App() {
       });
   }, []);
 
-    // Function to handle adding a new user
   const addUser = async (event) => {
     event.preventDefault();
     try {

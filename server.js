@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 
-// MongoDB connection
+//1. MongoDB connection
 mongoose.connect('mongodb://127.0.0.1:27017/Users', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -17,14 +17,15 @@ db.once('open', function () {
 });
 app.use(cors());
 app.use(express.json());
-// MongoDB Schema and Model
+
+//2. MongoDB Schema and Model
 const userSchema = new mongoose.Schema({
-  username: String, // Add any additional fields you need for users
+  username: String, 
 });
 
 const User = mongoose.model('User', userSchema);
 
-// API Endpoints
+//3. API Endpoints
 app.get('/api/users', async (req, res) => {
   try {
     const users = await User.find();
@@ -47,7 +48,7 @@ app.post('/api/users', async (req, res) => {
       res.status(500).send('Error saving to database');
 }});
 
-// Server setup
+//4. Server setup
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
